@@ -36,17 +36,14 @@ services:
         sync: false
 
   # ------------------------------------------------------------------
-  # Frontend: React 18 + Vite Static Site
+  # Frontend: React 18 + Vite Static Site (Global CDN)
   # ------------------------------------------------------------------
   - type: web
     name: crypto-trading-frontend
     runtime: static
     rootDir: Frontend
-    plan: free
-    region: ohio
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
-    autoDeploy: true
     routes:
       - type: rewrite
         source: /*
