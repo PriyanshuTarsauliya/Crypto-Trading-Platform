@@ -8,6 +8,7 @@
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1.svg?logo=mysql)](https://www.mysql.com/)
 [![Java](https://img.shields.io/badge/Java-17%2F19-orange.svg?logo=openjdk)](https://openjdk.org/)
 [![CI/CD Pipeline](https://github.com/PriyanshuTarsauliya/Crypto-Trading-Platform/actions/workflows/main.yml/badge.svg)](https://github.com/PriyanshuTarsauliya/Crypto-Trading-Platform/actions/workflows/main.yml)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/PriyanshuTarsauliya/Crypto-Trading-Platform)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > A full-stack, enterprise-grade Cryptocurrency Trading and Portfolio Management Platform inspired by Binance and Coinbase. Built with a modern **Spring Boot 3** backend and a responsive **React 18 + Vite + Tailwind CSS** frontend, featuring **Google Gemini AI** intelligence, real-time market data via **CoinGecko**, dual payment gateways (**Stripe & Razorpay**), and multi-tier authentication with **Two-Factor Authentication (2FA)**.

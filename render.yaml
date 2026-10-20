@@ -1,0 +1,62 @@
+services:
+  # ------------------------------------------------------------------
+  # Backend: Spring Boot 3 Web Service
+  # ------------------------------------------------------------------
+  - type: web
+    name: crypto-trading-backend
+    runtime: java
+    rootDir: Backend
+    plan: free
+    region: ohio
+    buildCommand: chmod +x mvnw && ./mvnw -B clean package -DskipTests
+    startCommand: java -Dserver.port=$PORT -jar target/treading-plateform-0.0.1-SNAPSHOT.jar
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:h2:mem:treading;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL;NON_KEYWORDS=USER
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: org.h2.Driver
+      - key: SPRING_DATASOURCE_USERNAME
+        value: sa
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: ""
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: STRIPE_API_KEY
+        sync: false
+      - key: RAZORPAY_API_KEY
+        sync: false
+      - key: RAZORPAY_API_SECRET
+        sync: false
+      - key: COINGECKO_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+
+  # ------------------------------------------------------------------
+  # Frontend: React 18 + Vite Static Site
+  # ------------------------------------------------------------------
+  - type: web
+    name: crypto-trading-frontend
+    runtime: static
+    rootDir: Frontend
+    plan: free
+    region: ohio
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    autoDeploy: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: crypto-trading-backend
+          property: host
